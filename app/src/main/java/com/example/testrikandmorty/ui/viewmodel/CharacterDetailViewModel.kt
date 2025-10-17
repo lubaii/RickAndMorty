@@ -40,3 +40,6 @@ class CharacterDetailViewModel @Inject constructor(
         }
     }
 }
+
+
+

@@ -34,3 +34,6 @@ interface CharacterDao {
     @Query("DELETE FROM characters")
     suspend fun deleteAllCharacters()
 }
+
+
+

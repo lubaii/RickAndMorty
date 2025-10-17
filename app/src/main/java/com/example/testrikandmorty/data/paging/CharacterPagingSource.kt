@@ -29,20 +29,27 @@ class CharacterPagingSource(
             )
             
             if (response.isSuccessful) {
-                val characters = response.body()?.results ?: emptyList()
+                val responseBody = response.body()
+                val characters = responseBody?.results ?: emptyList()
                 
-                // Сохраняем в базу данных для офлайн режима
-                characterDao.insertCharacters(characters)
+                // Сохраняем в базу данных для офлайн режима только если есть данные
+                if (characters.isNotEmpty()) {
+                    characterDao.insertCharacters(characters)
+                }
                 
                 LoadResult.Page(
                     data = characters,
                     prevKey = if (page == 1) null else page - 1,
-                    nextKey = if (response.body()?.info?.next == null) null else page + 1
+                    nextKey = if (responseBody?.info?.next == null) null else page + 1
                 )
             } else {
-                // Если запрос не удался, пытаемся загрузить из базы данных
-                val cachedCharacters = characterDao.getAllCharacters()
-                LoadResult.Error(HttpException(response))
+                // Если запрос не удался (например, 404 для несуществующих фильтров)
+                // Возвращаем пустую страницу вместо ошибки
+                LoadResult.Page(
+                    data = emptyList(),
+                    prevKey = null,
+                    nextKey = null
+                )
             }
         } catch (e: IOException) {
             // При отсутствии интернета загружаем из базы данных
@@ -61,3 +68,5 @@ class CharacterPagingSource(
         }
     }
 }
+
+

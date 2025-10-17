@@ -69,3 +69,6 @@ object AppModule {
         return CharacterRepository(api, characterDao)
     }
 }
+
+
+

@@ -57,13 +57,15 @@ fun FilterBottomSheet(
                 FilterChip(
                     onClick = { selectedStatus = null },
                     label = { Text("Все") },
-                    selected = selectedStatus == null
+                    selected = selectedStatus == null,
+                    modifier = Modifier.height(40.dp)
                 )
                 statusOptions.forEach { status ->
                     FilterChip(
                         onClick = { selectedStatus = if (selectedStatus == status) null else status },
                         label = { Text(status.replaceFirstChar { it.uppercase() }) },
-                        selected = selectedStatus == status
+                        selected = selectedStatus == status,
+                        modifier = Modifier.height(40.dp)
                     )
                 }
             }
@@ -77,6 +79,7 @@ fun FilterBottomSheet(
             )
             Spacer(modifier = Modifier.height(8.dp))
             
+            // Первая строка видов (максимум 4 кнопки)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -84,13 +87,66 @@ fun FilterBottomSheet(
                 FilterChip(
                     onClick = { selectedSpecies = null },
                     label = { Text("Все") },
-                    selected = selectedSpecies == null
+                    selected = selectedSpecies == null,
+                    modifier = Modifier.height(40.dp)
                 )
-                speciesOptions.take(6).forEach { species ->
+                speciesOptions.take(3).forEach { species ->
                     FilterChip(
                         onClick = { selectedSpecies = if (selectedSpecies == species) null else species },
                         label = { Text(species.replaceFirstChar { it.uppercase() }) },
-                        selected = selectedSpecies == species
+                        selected = selectedSpecies == species,
+                        modifier = Modifier.height(40.dp)
+                    )
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Вторая строка видов (3 кнопки)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                speciesOptions.drop(3).take(3).forEach { species ->
+                    FilterChip(
+                        onClick = { selectedSpecies = if (selectedSpecies == species) null else species },
+                        label = { Text(species.replaceFirstChar { it.uppercase() }) },
+                        selected = selectedSpecies == species,
+                        modifier = Modifier.height(40.dp)
+                    )
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Третья строка видов (Animal на новой строке)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                speciesOptions.drop(6).take(1).forEach { species ->
+                    FilterChip(
+                        onClick = { selectedSpecies = if (selectedSpecies == species) null else species },
+                        label = { Text(species.replaceFirstChar { it.uppercase() }) },
+                        selected = selectedSpecies == species,
+                        modifier = Modifier.height(40.dp)
+                    )
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Четвертая строка видов (оставшиеся кнопки)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                speciesOptions.drop(7).forEach { species ->
+                    FilterChip(
+                        onClick = { selectedSpecies = if (selectedSpecies == species) null else species },
+                        label = { Text(species.replaceFirstChar { it.uppercase() }) },
+                        selected = selectedSpecies == species,
+                        modifier = Modifier.height(40.dp)
                     )
                 }
             }
@@ -104,6 +160,7 @@ fun FilterBottomSheet(
             )
             Spacer(modifier = Modifier.height(8.dp))
             
+            // Первая строка полов
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -111,13 +168,32 @@ fun FilterBottomSheet(
                 FilterChip(
                     onClick = { selectedGender = null },
                     label = { Text("Все") },
-                    selected = selectedGender == null
+                    selected = selectedGender == null,
+                    modifier = Modifier.height(40.dp)
                 )
-                genderOptions.forEach { gender ->
+                genderOptions.take(3).forEach { gender ->
                     FilterChip(
                         onClick = { selectedGender = if (selectedGender == gender) null else gender },
                         label = { Text(gender.replaceFirstChar { it.uppercase() }) },
-                        selected = selectedGender == gender
+                        selected = selectedGender == gender,
+                        modifier = Modifier.height(40.dp)
+                    )
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Вторая строка полов (unknown на новой строке)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                genderOptions.drop(3).forEach { gender ->
+                    FilterChip(
+                        onClick = { selectedGender = if (selectedGender == gender) null else gender },
+                        label = { Text(gender.replaceFirstChar { it.uppercase() }) },
+                        selected = selectedGender == gender,
+                        modifier = Modifier.height(40.dp)
                     )
                 }
             }
@@ -154,3 +230,5 @@ fun FilterBottomSheet(
         }
     }
 }
+
+

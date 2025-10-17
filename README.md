@@ -4,7 +4,8 @@
 
 Android приложение для просмотра персонажей из популярного мультсериала "Rick and Morty". Приложение использует официальное API Rick and Morty для получения данных о персонажах и предоставляет удобный интерфейс для их просмотра с возможностью фильтрации и поиска.
 
-![photo_2025-10-17_12-45-17](https://github.com/user-attachments/assets/d2485529-738c-42ce-be4c-cc104ba5cc3c)
+<img width="213" height="450" alt="download" src="https://github.com/user-attachments/assets/0652b4b5-65cc-43ec-952e-5db9a0d9bf83" />
+
 
 ## ✨ Основные возможности
 
